@@ -1,0 +1,769 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+    <meta name="description" content="Rutas del Sur — Tours y aventuras en Valdivia y la Patagonia Norte. Reserva tu experiencia hoy.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rutas del Sur | Tours en Valdivia, Chile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#1a3a6b;--primary-dark:#0f2347;--primary-light:#2a5298;
+  --green:#2d6a4f;--green-light:#40916c;--green-accent:#52b788;
+  --white:#fff;--light:#f0f4f8;--light2:#e8f0fe;
+  --text:#1a1a2e;--muted:#64748b;
+  --r:24px;--rsm:16px;--rlg:32px;
+  --shadow:0 8px 32px rgba(26,58,107,.12);
+  --shadow-hover:0 20px 60px rgba(26,58,107,.28);
+  --t:all .4s cubic-bezier(.4,0,.2,1)
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--text);overflow-x:hidden;line-height:1.6}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(48px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;transition:var(--t)}
+nav.sc{background:rgba(255,255,255,.96);backdrop-filter:blur(20px);box-shadow:0 4px 24px rgba(26,58,107,.1);padding:10px 40px}
+.nav-logo{font-size:1.15rem;font-weight:800;color:#fff;display:flex;align-items:center;gap:10px;text-decoration:none}
+nav.sc .nav-logo{color:var(--primary)}
+.nav-logo-icon{width:40px;height:40px;background:var(--green-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:500;font-size:.9rem;transition:var(--t);position:relative}
+nav.sc .nav-links a{color:var(--text)}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--green-accent);border-radius:2px;transition:width .3s}
+.nav-links a:hover::after{width:100%}
+.nav-cta{background:var(--green-accent)!important;color:#fff!important;padding:9px 22px;border-radius:50px;font-weight:700!important}
+.nav-cta:hover{background:var(--green)!important;transform:translateY(-2px)}
+.nav-cta::after{display:none!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{width:26px;height:2px;background:#fff;border-radius:2px;transition:var(--t);display:block}
+nav.sc .hamburger span{background:var(--primary)}
+@media(max-width:768px){.nav-links{display:none}.hamburger{display:flex}nav{padding:14px 20px}nav.sc{padding:10px 20px}}
+
+/* MOBILE MENU */
+.mob-menu{position:fixed;inset:0;background:rgba(15,35,71,.98);backdrop-filter:blur(20px);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;pointer-events:none;transition:opacity .4s}
+.mob-menu.open{opacity:1;pointer-events:all}
+.mob-menu a{color:#fff;text-decoration:none;font-size:1.5rem;font-weight:700;transition:color .3s}
+.mob-menu a:hover{color:var(--green-accent)}
+.mob-close{position:absolute;top:24px;right:24px;font-size:2rem;color:#fff;cursor:pointer;background:none;border:none;line-height:1}
+
+/* HERO */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--primary-dark)}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,20,50,.88) 0%,rgba(26,58,107,.78) 50%,rgba(0,30,20,.82) 100%),url('https://images.unsplash.com/photo-1594589885358-00e4737fdf13?w=1920&q=80') center/cover no-repeat;transform:scale(1.1);will-change:transform}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.25;animation:float 9s ease-in-out infinite}
+.orb1{width:500px;height:500px;background:var(--green);top:-120px;right:-120px}
+.orb2{width:400px;height:400px;background:var(--primary-light);bottom:-80px;left:-100px;animation-delay:-4s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(20px,-20px) scale(1.05)}66%{transform:translate(-10px,15px) scale(.97)}}
+.hero-content{position:relative;z-index:1;text-align:center;padding:0 24px;max-width:880px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(82,183,136,.18);border:1px solid rgba(82,183,136,.4);color:var(--green-accent);padding:8px 20px;border-radius:50px;font-size:.82rem;font-weight:600;letter-spacing:.5px;margin-bottom:28px;animation:fdD .8s ease .2s both}
+@keyframes fdD{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:none}}
+.hero-h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,8vw,5.8rem);font-weight:800;color:#fff;line-height:1.08;margin-bottom:18px;animation:fdU .9s ease .4s both}
+.hero-h1 span{color:var(--green-accent)}
+@keyframes fdU{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.hero-sub{font-size:clamp(1rem,2.5vw,1.35rem);color:rgba(255,255,255,.82);margin-bottom:10px;font-weight:300;animation:fdU .9s ease .6s both}
+.hero-slogan{font-size:clamp(1.2rem,3vw,1.7rem);color:var(--green-accent);font-weight:700;margin-bottom:36px;animation:fdU .9s ease .7s both}
+.hero-stats{display:flex;justify-content:center;gap:40px;margin-bottom:44px;animation:fdU .9s ease .85s both}
+.stat-n{font-size:1.9rem;font-weight:900;color:#fff;display:block}
+.stat-l{font-size:.75rem;color:rgba(255,255,255,.6);letter-spacing:1px;text-transform:uppercase}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fdU .9s ease 1s both}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--green-accent);color:#fff;padding:15px 34px;border-radius:50px;font-weight:700;font-size:.95rem;text-decoration:none;transition:var(--t);box-shadow:0 8px 28px rgba(82,183,136,.4)}
+.btn-p:hover{background:var(--green);transform:translateY(-3px);box-shadow:0 16px 40px rgba(82,183,136,.5)}
+.btn-o{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#fff;padding:15px 34px;border-radius:50px;font-weight:600;font-size:.95rem;text-decoration:none;border:2px solid rgba(255,255,255,.38);transition:var(--t)}
+.btn-o:hover{background:rgba(255,255,255,.1);border-color:#fff;transform:translateY(-3px)}
+.scroll-ind{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);animation:bob 2s infinite}
+.scroll-ind div{width:38px;height:60px;border:2px solid rgba(255,255,255,.38);border-radius:50px;display:flex;justify-content:center;padding-top:8px}
+.scroll-ind div::before{content:'';width:7px;height:7px;background:#fff;border-radius:50%;animation:sd 2s infinite}
+@keyframes sd{0%{transform:translateY(0);opacity:1}100%{transform:translateY(26px);opacity:0}}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-8px)}}
+
+/* SECTIONS */
+section{padding:96px 0}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.sec-header{text-align:center;margin-bottom:60px}
+.sec-tag{display:inline-block;background:var(--light2);color:var(--primary);padding:5px 16px;border-radius:50px;font-size:.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:var(--primary-dark);line-height:1.2;margin-bottom:14px}
+.sec-sub{font-size:1rem;color:var(--muted);max-width:540px;margin:0 auto}
+
+/* TOURS */
+.tours{background:var(--light)}
+.tours-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:26px}
+.card{background:#fff;border-radius:var(--rlg);overflow:hidden;box-shadow:var(--shadow);transition:var(--t)}
+.card:hover{transform:translateY(-8px) scale(1.01);box-shadow:var(--shadow-hover)}
+.card-img{height:195px;overflow:hidden;position:relative}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;border-radius:var(--rlg) var(--rlg) 0 0}
+.card:hover .card-img img{transform:scale(1.08)}
+.card-badge{position:absolute;top:14px;right:14px;background:var(--primary);color:#fff;padding:5px 13px;border-radius:50px;font-size:.74rem;font-weight:700}
+.card-body{padding:22px}
+.card-cat{font-size:.72rem;font-weight:700;color:var(--green-light);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.card-title{font-size:1.1rem;font-weight:700;color:var(--primary-dark);margin-bottom:10px;line-height:1.3}
+.card-desc{font-size:.87rem;color:var(--muted);margin-bottom:18px;line-height:1.55}
+.card-foot{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--light)}
+.price-lbl{font-size:.7rem;color:var(--muted)}
+.price-amt{font-size:1.25rem;font-weight:800;color:var(--primary)}
+.price-per{font-size:.7rem;color:var(--muted)}
+.card-btn{background:var(--primary);color:#fff;border:none;padding:9px 20px;border-radius:50px;font-weight:600;font-size:.82rem;cursor:pointer;transition:var(--t);text-decoration:none;display:inline-block}
+.card-btn:hover{background:var(--green);transform:scale(1.05)}
+
+/* WHY */
+.why{background:#fff}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:28px}
+.why-card{background:var(--light);border-radius:var(--r);padding:36px 26px;text-align:center;transition:var(--t)}
+.why-card:hover{background:var(--primary);transform:translateY(-6px);box-shadow:var(--shadow-hover)}
+.why-card:hover .why-title,.why-card:hover .why-text{color:#fff}
+.why-icon{width:76px;height:76px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.9rem;margin:0 auto 22px;box-shadow:0 4px 20px rgba(26,58,107,.1);transition:var(--t)}
+.why-card:hover .why-icon{background:rgba(255,255,255,.14)}
+.why-title{font-size:1rem;font-weight:700;color:var(--primary-dark);margin-bottom:8px;transition:color .4s}
+.why-text{font-size:.86rem;color:var(--muted);line-height:1.6;transition:color .4s}
+
+/* CTA BAND */
+.cta-band{background:linear-gradient(135deg,var(--green) 0%,var(--green-light) 50%,var(--primary-light) 100%);padding:72px 0;text-align:center}
+.cta-band h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;color:#fff;margin-bottom:14px}
+.cta-band p{font-size:1.05rem;color:rgba(255,255,255,.85);margin-bottom:32px}
+.cta-btn{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--green);padding:16px 38px;border-radius:50px;font-weight:800;font-size:1rem;text-decoration:none;transition:var(--t);box-shadow:0 8px 32px rgba(0,0,0,.18)}
+.cta-btn:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.28)}
+
+/* REVIEWS */
+.reviews{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 60%,#0d3b1e 100%);position:relative;overflow:hidden}
+.reviews .sec-tag{background:rgba(82,183,136,.18);color:var(--green-accent)}
+.reviews .sec-title{color:#fff}
+.reviews .sec-sub{color:rgba(255,255,255,.7)}
+.rating-box{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:28px 36px;display:flex;align-items:center;gap:44px;margin-bottom:36px}
+.rating-big{text-align:center}
+.rating-num{font-size:3.6rem;font-weight:900;color:#fff;line-height:1}
+.rating-stars{color:#fbbf24;font-size:1.3rem;margin:6px 0}
+.rating-cnt{font-size:.8rem;color:rgba(255,255,255,.6)}
+.rating-div{width:1px;height:70px;background:rgba(255,255,255,.15)}
+.rating-bars{flex:1}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.bar-lbl{font-size:.78rem;color:rgba(255,255,255,.7);width:22px}
+.bar-bg{flex:1;height:7px;background:rgba(255,255,255,.14);border-radius:50px;overflow:hidden}
+.bar-fill{height:100%;background:var(--green-accent);border-radius:50px;width:0;transition:width 1.5s cubic-bezier(.4,0,.2,1)}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px}
+.rv{background:rgba(255,255,255,.08);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:26px;transition:var(--t)}
+.rv:hover{background:rgba(255,255,255,.13);transform:translateY(-4px)}
+.rv-stars{color:#fbbf24;font-size:1rem;margin-bottom:14px}
+.rv-text{font-size:.9rem;color:rgba(255,255,255,.88);line-height:1.7;margin-bottom:18px;font-style:italic}
+.rv-author{display:flex;align-items:center;gap:12px}
+.rv-avatar{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;color:#fff;flex-shrink:0;border:2px solid rgba(255,255,255,.2)}
+.rv-name{font-weight:700;color:#fff;font-size:.9rem}
+.rv-loc{font-size:.76rem;color:rgba(255,255,255,.55)}
+
+/* FOOTER */
+footer{background:var(--primary-dark);padding:76px 0 36px}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:56px;padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,.1)}
+.ft-logo{display:flex;align-items:center;gap:12px;color:#fff;font-weight:800;font-size:1.15rem;margin-bottom:8px}
+.ft-logo-icon{width:46px;height:46px;background:var(--green-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+.ft-brand p{color:rgba(255,255,255,.6);font-size:.9rem;line-height:1.7;margin:14px 0 22px}
+.ft-sernatur{display:inline-flex;align-items:center;gap:7px;background:rgba(82,183,136,.14);border:1px solid rgba(82,183,136,.3);color:var(--green-accent);padding:7px 14px;border-radius:50px;font-size:.78rem;font-weight:600}
+.ft-social{display:flex;gap:10px;margin-top:18px}
+.ft-soc-a{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:1rem;text-decoration:none;color:#fff;transition:var(--t)}
+.ft-soc-a:hover{background:var(--green-accent);transform:translateY(-4px)}
+.ft-h{font-size:.95rem;font-weight:700;color:#fff;margin-bottom:22px}
+.ft-links{list-style:none}
+.ft-links li{margin-bottom:10px}
+.ft-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:.86rem;transition:color .3s}
+.ft-links a:hover{color:var(--green-accent)}
+.ft-ci{display:flex;align-items:flex-start;gap:11px;margin-bottom:14px}
+.ft-ci-icon{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.ft-ci-text{color:rgba(255,255,255,.7);font-size:.86rem;line-height:1.5}
+.ft-ci-text strong{color:#fff;display:block}
+.ft-bottom{padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+.ft-bottom p{color:rgba(255,255,255,.4);font-size:.82rem}
+.ft-bottom a{color:var(--green-accent);text-decoration:none}
+
+/* WA BUTTON */
+.wa-fab{position:fixed;bottom:30px;right:30px;z-index:9999}
+.wa-btn{width:62px;height:62px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 8px 28px rgba(37,211,102,.42);position:relative}
+.wa-btn::before{content:'';position:absolute;inset:-7px;border-radius:50%;border:3px solid rgba(37,211,102,.38);animation:wa-pulse 2s infinite}
+.wa-btn::after{content:'';position:absolute;inset:-16px;border-radius:50%;border:3px solid rgba(37,211,102,.14);animation:wa-pulse 2s infinite .55s}
+@keyframes wa-pulse{0%{transform:scale(1);opacity:1}100%{transform:scale(1.55);opacity:0}}
+.wa-tip{position:absolute;right:74px;top:50%;transform:translateY(-50%) translateX(8px);background:#fff;color:var(--text);padding:9px 16px;border-radius:20px;font-size:.82rem;font-weight:600;box-shadow:var(--shadow);white-space:nowrap;opacity:0;transition:var(--t);pointer-events:none}
+.wa-fab:hover .wa-tip{opacity:1;transform:translateY(-50%) translateX(0)}
+
+/* MOBILE */
+@media(max-width:768px){
+  section{padding:60px 0}
+  .tours-grid,.why-grid,.reviews-grid{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr;gap:36px}
+  .ft-bottom{flex-direction:column;text-align:center}
+  .hero-stats{gap:20px}
+  .stat-n{font-size:1.5rem}
+  .rating-box{flex-direction:column;gap:22px;padding:22px}
+  .rating-div{width:70px;height:1px}
+  .wa-fab{bottom:20px;right:20px}
+}
+@media(max-width:480px){
+  .hero-btns{flex-direction:column;align-items:center}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+/* MODALS */
+.modal-overlay{position:fixed;inset:0;background:rgba(10,20,45,.82);backdrop-filter:blur(8px);z-index:10000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .35s ease}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:#fff;border-radius:28px;width:100%;max-width:680px;max-height:90vh;overflow-y:auto;position:relative;transform:translateY(32px) scale(.97);transition:transform .38s cubic-bezier(.4,0,.2,1),opacity .35s ease;opacity:0;scrollbar-width:thin;scrollbar-color:var(--green-accent) var(--light)}
+.modal-overlay.open .modal{transform:none;opacity:1}
+.modal-img{width:100%;height:260px;object-fit:cover;border-radius:28px 28px 0 0;display:block}
+.modal-close{position:absolute;top:14px;right:14px;width:40px;height:40px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border:none;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--t);z-index:2;box-shadow:0 2px 12px rgba(0,0,0,.18)}
+.modal-close:hover{background:var(--primary);color:#fff;transform:rotate(90deg)}
+.modal-body{padding:26px 30px 32px}
+.modal-cat{font-size:.72rem;font-weight:700;color:var(--green-light);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.modal-title{font-family:'Playfair Display',serif;font-size:1.65rem;font-weight:800;color:var(--primary-dark);margin-bottom:14px;line-height:1.2}
+.modal-price-box{background:var(--light2);border-radius:20px;padding:14px 20px;display:inline-flex;align-items:baseline;gap:8px;margin-bottom:22px}
+.modal-price-amount{font-size:2rem;font-weight:900;color:var(--primary);line-height:1}
+.modal-price-per{font-size:.8rem;color:var(--muted)}
+.modal-desc{font-size:.92rem;color:var(--text);line-height:1.78;margin-bottom:10px}
+.modal-sec{font-size:.72rem;font-weight:800;color:var(--primary);letter-spacing:1.5px;text-transform:uppercase;margin:24px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--light2)}
+.modal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.modal-di{background:var(--light);border-radius:20px;padding:13px 15px;display:flex;flex-direction:column;gap:3px}
+.modal-di-icon{font-size:1.15rem}
+.modal-di-lbl{font-size:.66rem;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-weight:600}
+.modal-di-val{font-size:.86rem;font-weight:700;color:var(--primary-dark)}
+.modal-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.modal-list li{font-size:.9rem;color:var(--text);display:flex;align-items:flex-start;gap:8px;line-height:1.45}
+.modal-list li span:first-child{flex-shrink:0;margin-top:1px}
+.modal-places{display:flex;flex-direction:column;gap:10px}
+.modal-place{background:var(--light);border-radius:20px;padding:13px 16px;display:flex;align-items:flex-start;gap:12px}
+.modal-place-icon{width:34px;height:34px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.modal-place-name{font-weight:700;color:var(--primary-dark);font-size:.9rem;margin-bottom:2px}
+.modal-place-desc{font-size:.81rem;color:var(--muted);line-height:1.4}
+.modal-cancel-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.modal-ci{border-radius:20px;padding:13px 16px}
+.modal-ci-time{font-size:.68rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.modal-ci-policy{font-size:.87rem;font-weight:700}
+.modal-ci.g{background:rgba(82,183,136,.1)}.modal-ci.g .modal-ci-policy{color:var(--green)}
+.modal-ci.y{background:rgba(251,191,36,.1)}.modal-ci.y .modal-ci-policy{color:#b45309}
+.modal-ci.r{background:rgba(220,38,38,.08)}.modal-ci.r .modal-ci-policy{color:#dc2626}
+.modal-wa{display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#fff;padding:17px 28px;border-radius:50px;font-weight:800;font-size:1rem;text-decoration:none;width:100%;margin-top:26px;transition:var(--t);box-shadow:0 8px 28px rgba(37,211,102,.32)}
+.modal-wa:hover{background:#1da851;transform:translateY(-3px);box-shadow:0 14px 40px rgba(37,211,102,.48)}
+@media(max-width:600px){
+  .modal-overlay{padding:0;align-items:flex-end}
+  .modal{max-height:93dvh;border-radius:28px 28px 0 0}
+  .modal-img{height:200px;border-radius:28px 28px 0 0}
+  .modal-body{padding:18px 18px 28px}
+  .modal-title{font-size:1.35rem}
+  .modal-cancel-grid{grid-template-columns:1fr}
+  .modal-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#inicio" class="nav-logo">
+    <div class="nav-logo-icon">🏞️</div>
+    Rutas del Sur
+  </a>
+  <ul class="nav-links">
+    <li><a href="#tours">Tours</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#resenas">Reseñas</a></li>
+    <li><a href="https://wa.me/56900000000" target="_blank" class="nav-cta">Reservar</a></li>
+  </ul>
+  <button class="hamburger" id="ham" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mob-menu" id="mob">
+  <button class="mob-close" id="mobClose">✕</button>
+  <a href="#tours" onclick="closeMob()">Tours</a>
+  <a href="#nosotros" onclick="closeMob()">Nosotros</a>
+  <a href="#resenas" onclick="closeMob()">Reseñas</a>
+  <a href="#contacto" onclick="closeMob()">Contacto</a>
+  <a href="https://wa.me/56900000000" target="_blank" style="color:#25D366!important">📱 WhatsApp</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🌿 Turismo Local &nbsp;·&nbsp; Valdivia, Chile</div>
+    <h1 class="hero-h1">Turismo<br><span>Rutas del Sur</span></h1>
+    <p class="hero-sub">Descubre la magia del sur de Chile</p>
+    <p class="hero-slogan">Explora la Patagonia Norte</p>
+    <div class="hero-stats">
+      <div><span class="stat-n">+200</span><span class="stat-l">Viajeros felices</span></div>
+      <div><span class="stat-n">⭐ 4.9</span><span class="stat-l">Valoración media</span></div>
+      <div><span class="stat-n">9</span><span class="stat-l">Tours disponibles</span></div>
+    </div>
+    <div class="hero-btns">
+      <a href="#tours" class="btn-p">🗺️ Ver Tours</a>
+      <a href="https://wa.me/56900000000" target="_blank" class="btn-o">💬 Consultar por WhatsApp</a>
+    </div>
+  </div>
+  <div class="scroll-ind"><div></div></div>
+</section>
+
+<!-- TOURS -->
+<section class="tours" id="tours">
+  <div class="container">
+    <div class="sec-header">
+      <span class="sec-tag reveal">Nuestros Tours</span>
+      <h2 class="sec-title reveal d1">Experiencias únicas en Los Ríos</h2>
+      <p class="sec-sub reveal d2">Tours guiados en grupos reducidos para vivir el sur de Chile de forma auténtica</p>
+    </div>
+    <div class="tours-grid">
+
+      <div class="card reveal d1">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1631330628089-e18d390c6335?w=600&q=80" alt="Tour Panorámico" loading="lazy">
+          <span class="card-badge">Imperdible</span>
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Ciudad · Historia</div>
+          <h3 class="card-title">Tour Panorámico</h3>
+          <p class="card-desc">Recorre los puntos más emblemáticos de la ciudad, su historia y el mercado fluvial al borde del río.</p>
+          <div class="card-foot">
+            <div><div class="price-lbl">Precio por persona</div><div class="price-amt">$20.000</div></div>
+            <button class="card-btn" onclick="openModal('m1')">Ver más</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal d2">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1584151629593-04ae300b8d90?w=600&q=80" alt="Navegación Fluvial" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Navegación · Naturaleza</div>
+          <h3 class="card-title">Navegación Fluvial</h3>
+          <p class="card-desc">Navega por los ríos que rodean la ciudad y descubre paisajes únicos desde el agua.</p>
+          <div class="card-foot">
+            <div><div class="price-lbl">Precio por persona</div><div class="price-amt">$14.900</div></div>
+            <button class="card-btn" onclick="openModal('m2')">Ver más</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal d3">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1646530576624-90f60aee023e?w=600&q=80" alt="Tour Costero" loading="lazy">
+          <span class="card-badge">Popular</span>
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Navegación · Fortalezas</div>
+          <h3 class="card-title">Tour Costero</h3>
+          <p class="card-desc">Fortalezas coloniales y vistas al Pacífico en un recorrido por la costa histórica de la región.</p>
+          <div class="card-foot">
+            <div><div class="price-lbl">Precio por persona</div><div class="price-amt">$37.000</div></div>
+            <button class="card-btn" onclick="openModal('m3')">Ver más</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal d1">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1600053161935-a68aa834a41b?w=600&q=80" alt="Trekking Naturaleza" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Naturaleza · Bosque</div>
+          <h3 class="card-title">Trekking Naturaleza</h3>
+          <p class="card-desc">Senderos de bosque nativo con fauna local, miradores y el sonido puro del sur de Chile.</p>
+          <div class="card-foot">
+            <div><div class="price-lbl">Precio por persona</div><div class="price-amt">$34.900</div></div>
+            <button class="card-btn" onclick="openModal('m4')">Ver más</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal d2">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1594590167855-c039f199c1a5?w=600&q=80" alt="Tour de los Lagos" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Aventura · Lagos</div>
+          <h3 class="card-title">Tour de los Lagos</h3>
+          <p class="card-desc">Lagos patagónicos, volcanes y naturaleza salvaje en una expedición de día completo.</p>
+          <div class="card-foot">
+            <div><div class="price-lbl">Precio por persona</div><div class="price-amt">$74.900</div></div>
+            <button class="card-btn" onclick="openModal('m5')">Ver más</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal d3">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1697736767499-26eee0886dff?w=600&q=80" alt="Termas Naturales" loading="lazy">
+          <span class="card-badge">Favorito</span>
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Termas · Relax</div>
+          <h3 class="card-title">Termas Naturales</h3>
+          <p class="card-desc">Aguas termales naturales rodeadas de bosque en una de las reservas más hermosas del sur.</p>
+          <div class="card-foot">
+            <div><div class="price-lbl">Precio por persona</div><div class="price-amt">$74.900</div></div>
+            <button class="card-btn" onclick="openModal('m6')">Ver más</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal d1">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1578762513065-f584c926cc04?w=600&q=80" alt="Reserva del Bosque" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Naturaleza · Reserva</div>
+          <h3 class="card-title">Reserva Natural</h3>
+          <p class="card-desc">Cascadas, fauna endémica y bosques milenarios en una reserva natural protegida de acceso exclusivo.</p>
+          <div class="card-foot">
+            <div><div class="price-lbl">Precio por persona</div><div class="price-amt">$64.900</div></div>
+            <button class="card-btn" onclick="openModal('m7')">Ver más</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal d2">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1594590203425-44de157988c3?w=600&q=80" alt="Termas Premium" loading="lazy">
+          <span class="card-badge">Premium</span>
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Termas · Exclusivo</div>
+          <h3 class="card-title">Termas Premium</h3>
+          <p class="card-desc">El complejo termal más exclusivo de la región: múltiples piscinas en pleno bosque nativo.</p>
+          <div class="card-foot">
+            <div><div class="price-lbl">Precio por persona</div><div class="price-amt">$94.900</div></div>
+            <button class="card-btn" onclick="openModal('m8')">Ver más</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal d3">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1580154074075-b79ec0f80ef5?w=600&q=80" alt="Transfer Privado" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Traslado · Aeropuerto</div>
+          <h3 class="card-title">Transfer Privado</h3>
+          <p class="card-desc">Traslado privado entre el aeropuerto y tu alojamiento. Puntual, cómodo y sin complicaciones.</p>
+          <div class="card-foot">
+            <div><div class="price-lbl">Precio por persona</div><div class="price-amt">$20.000</div></div>
+            <button class="card-btn" onclick="openModal('m9')">Ver más</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ ELEGIRNOS -->
+<section class="why" id="nosotros">
+  <div class="container">
+    <div class="sec-header">
+      <span class="sec-tag reveal">¿Por qué elegirnos?</span>
+      <h2 class="sec-title reveal d1">La agencia mejor evaluada de Valdivia</h2>
+      <p class="sec-sub reveal d2">Más de +500 viajeros nos respaldan con sus reseñas de 5 estrellas en Google</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal d1"><div class="why-icon">🏅</div><h3 class="why-title">Operador Local</h3><p class="why-text">Empresa turística local con años de experiencia, comprometida con ofrecer experiencias auténticas y de calidad.</p></div>
+      <div class="why-card reveal d2"><div class="why-icon">⭐</div><h3 class="why-title">Mejor Evaluada</h3><p class="why-text">La agencia de tours más valorada en Valdivia con más de 500 reseñas de 5 estrellas en Google.</p></div>
+      <div class="why-card reveal d3"><div class="why-icon">🧭</div><h3 class="why-title">Guías Locales</h3><p class="why-text">Conocemos cada rincón, historia y secreto de la Región de Los Ríos. Vivimos lo que te mostramos.</p></div>
+      <div class="why-card reveal d4"><div class="why-icon">👥</div><h3 class="why-title">Grupos Reducidos</h3><p class="why-text">Tours en grupos pequeños para una experiencia más personalizada, íntima y auténtica con el territorio.</p></div>
+      <div class="why-card reveal d5"><div class="why-icon">🌿</div><h3 class="why-title">Turismo Responsable</h3><p class="why-text">Comprometidos con el medioambiente y las comunidades locales del sur de Chile.</p></div>
+      <div class="why-card reveal d1"><div class="why-icon">📱</div><h3 class="why-title">Respuesta Inmediata</h3><p class="why-text">Atención personalizada por WhatsApp. Cotizamos y reservamos en minutos, sin formularios.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="container">
+    <h2 class="reveal">¿Listo para tu aventura en el sur?</h2>
+    <p class="reveal d1">Escríbenos por WhatsApp y te ayudamos a planificar la experiencia perfecta</p>
+    <a href="https://wa.me/56900000000?text=Hola,%20quiero%20información%20sobre%20sus%20tours" target="_blank" class="cta-btn reveal d2">💬 Consultar ahora</a>
+  </div>
+</div>
+
+<!-- RESEÑAS -->
+<section class="reviews" id="resenas">
+  <div class="container" style="position:relative;z-index:1">
+    <div class="sec-header">
+      <span class="sec-tag reveal">Reseñas</span>
+      <h2 class="sec-title reveal d1">Lo que dicen nuestros viajeros</h2>
+      <p class="sec-sub reveal d2">+500 reseñas de 5 estrellas en Google</p>
+    </div>
+
+    <div class="rating-box reveal" id="ratingBox">
+      <div class="rating-big">
+        <div class="rating-num">4.9</div>
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-cnt">+500 reseñas en Google</div>
+      </div>
+      <div class="rating-div"></div>
+      <div class="rating-bars">
+        <div class="bar-row"><span class="bar-lbl">5★</span><div class="bar-bg"><div class="bar-fill" data-w="96%"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">4★</span><div class="bar-bg"><div class="bar-fill" data-w="3%"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">3★</span><div class="bar-bg"><div class="bar-fill" data-w="1%"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">2★</span><div class="bar-bg"><div class="bar-fill" data-w="0%"></div></div></div>
+        <div class="bar-row"><span class="bar-lbl">1★</span><div class="bar-bg"><div class="bar-fill" data-w="0%"></div></div></div>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="rv reveal d1"><div class="rv-stars">★★★★★</div><p class="rv-text">"El tour a Tour Costero fue espectacular. El guía conocía cada detalle histórico. Sin duda la mejor experiencia de todo nuestro viaje a Chile."</p><div class="rv-author"><div class="rv-avatar" style="background:var(--green-accent)">M</div><div><div class="rv-name">María González</div><div class="rv-loc">Santiago, Chile</div></div></div></div>
+      <div class="rv reveal d2"><div class="rv-stars">★★★★★</div><p class="rv-text">"Las Termas Premium fueron lo más hermoso que he visto. Organización impecable, transporte puntual y un guía increíble. ¡100% recomendado!"</p><div class="rv-author"><div class="rv-avatar" style="background:var(--primary-light)">C</div><div><div class="rv-name">Carlos Herrera</div><div class="rv-loc">Buenos Aires, Argentina</div></div></div></div>
+      <div class="rv reveal d3"><div class="rv-stars">★★★★★</div><p class="rv-text">"Viajamos en familia con tres niños y todo fue perfecto. Los guías son muy amables. El tour por Trekking Naturaleza fue mágico para los chicos. ¡Volveremos!"</p><div class="rv-author"><div class="rv-avatar" style="background:#9333ea">A</div><div><div class="rv-name">Ana Martínez</div><div class="rv-loc">Concepción, Chile</div></div></div></div>
+      <div class="rv reveal d1"><div class="rv-stars">★★★★★</div><p class="rv-text">"El city tour por Valdivia y Niebla superó todas mis expectativas. Ver los lobos marinos en el muelle fue increíble. Precio muy accesible."</p><div class="rv-author"><div class="rv-avatar" style="background:#dc2626">R</div><div><div class="rv-name">Roberto Silva</div><div class="rv-loc">Valparaíso, Chile</div></div></div></div>
+      <div class="rv reveal d2"><div class="rv-stars">★★★★★</div><p class="rv-text">"Empresa que se preocupa por su entorno. Nos explicaron la importancia del bosque valdiviano y cómo protegerlo. Turismo responsable de verdad."</p><div class="rv-author"><div class="rv-avatar" style="background:#0891b2">P</div><div><div class="rv-name">Patricia Rojas</div><div class="rv-loc">Madrid, España</div></div></div></div>
+      <div class="rv reveal d3"><div class="rv-stars">★★★★★</div><p class="rv-text">"Las Termas de del Bosque, algo de otro mundo. El viaje valió cada minuto. Reservar por WhatsApp fue muy fácil y rápido. Muy recomendada."</p><div class="rv-author"><div class="rv-avatar" style="background:#d97706">L</div><div><div class="rv-name">Luis Fernández</div><div class="rv-loc">Lima, Perú</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contacto">
+  <div class="container">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <div class="ft-logo"><div class="ft-logo-icon">🏞️</div>Rutas del Sur</div>
+        <p>La agencia de tours más valorada de Valdivia. Exploramos la magia del sur de Chile con guías locales apasionados y experiencias que dejan huella.</p>
+        <span class="ft-sernatur">🌿 Turismo local responsable</span>
+        <div class="ft-social">
+          <a href="https://www.instagram.com/rutasdelsur" target="_blank" class="ft-soc-a" title="Instagram">📸</a>
+          <a href="https://wa.me/56900000000" target="_blank" class="ft-soc-a" title="WhatsApp">💬</a>
+          <a href="https://rutasdelsur.cl" target="_blank" class="ft-soc-a" title="Web">🌐</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="ft-h">Tours</h4>
+        <ul class="ft-links">
+          <li><a href="#tours">Tour Panorámico</a></li>
+          <li><a href="#tours">Navegación Fluvial</a></li>
+          <li><a href="#tours">Tour Costero</a></li>
+          <li><a href="#tours">Trekking Naturaleza</a></li>
+          <li><a href="#tours">Tour de los Lagos</a></li>
+          <li><a href="#tours">Termas Naturales</a></li>
+          <li><a href="#tours">Reserva del Bosque</a></li>
+          <li><a href="#tours">Termas Premium</a></li>
+          <li><a href="#tours">Transfer Privado</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="ft-h">Contacto</h4>
+        <div class="ft-ci"><div class="ft-ci-icon">📱</div><div class="ft-ci-text"><strong>WhatsApp</strong><a href="https://wa.me/56900000000" target="_blank" style="color:#25D366;text-decoration:none">+56 9 0000 0000</a></div></div>
+        <div class="ft-ci"><div class="ft-ci-icon">📸</div><div class="ft-ci-text"><strong>Instagram</strong>@rutasdelsur</div></div>
+        <div class="ft-ci"><div class="ft-ci-icon">📍</div><div class="ft-ci-text"><strong>Ubicación</strong>Valdivia, Región de Los Ríos, Chile</div></div>
+        <div class="ft-ci"><div class="ft-ci-icon">⭐</div><div class="ft-ci-text"><strong>Google Reviews</strong>+500 reseñas · 4.9 estrellas</div></div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <p>© 2026 Rutas del Sur · Todos los derechos reservados</p>
+      <p>Valdivia, Chile · <a href="https://rutasdelsur.cl" target="_blank">rutasdelsur.cl</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- MODALES -->
+
+<!-- M1 -->
+<div class="modal-overlay" id="m1" onclick="if(event.target===this)closeModal('m1')">
+<div class="modal">
+  <button class="modal-close" onclick="closeModal('m1')">✕</button>
+  <img class="modal-img" src="https://images.unsplash.com/photo-1631330628089-e18d390c6335?w=800&q=80" alt="Tour Panorámico">
+  <div class="modal-body">
+    <div class="modal-cat">Ciudad · Historia</div>
+    <h2 class="modal-title">Tour Panorámico</h2>
+    <div class="modal-price-box"><span class="modal-price-amount">$20.000</span><span class="modal-price-per">CLP por persona</span></div>
+    <p class="modal-desc">Recorre los puntos más emblemáticos de la ciudad: su casco histórico, el mercado fluvial y los miradores al río. Una experiencia cultural y paisajística perfecta para conocer la región en pocas horas.</p>
+    <a href="https://wa.me/56900000000?text=Hola,%20quiero%20reservar%20el%20Tour%20Panorámico" target="_blank" class="modal-wa">💬 Quiero reservar este tour</a>
+  </div>
+</div>
+</div>
+
+<!-- M2 -->
+<div class="modal-overlay" id="m2" onclick="if(event.target===this)closeModal('m2')">
+<div class="modal">
+  <button class="modal-close" onclick="closeModal('m2')">✕</button>
+  <img class="modal-img" src="https://images.unsplash.com/photo-1584151629593-04ae300b8d90?w=800&q=80" alt="Navegación Fluvial">
+  <div class="modal-body">
+    <div class="modal-cat">Navegación · Naturaleza</div>
+    <h2 class="modal-title">Navegación Fluvial</h2>
+    <div class="modal-price-box"><span class="modal-price-amount">$14.900</span><span class="modal-price-per">CLP por persona</span></div>
+    <p class="modal-desc">Navega por los ríos que abrazan la ciudad y descubre pueblos costeros de pescadores con vistas únicas desde el agua. Un paseo tranquilo y memorable en plena naturaleza patagónica.</p>
+    <a href="https://wa.me/56900000000?text=Hola,%20quiero%20reservar%20la%20Navegación%20Fluvial" target="_blank" class="modal-wa">💬 Quiero reservar este tour</a>
+  </div>
+</div>
+</div>
+
+<!-- M3 -->
+<div class="modal-overlay" id="m3" onclick="if(event.target===this)closeModal('m3')">
+<div class="modal">
+  <button class="modal-close" onclick="closeModal('m3')">✕</button>
+  <img class="modal-img" src="https://images.unsplash.com/photo-1646530576624-90f60aee023e?w=800&q=80" alt="Tour Costero">
+  <div class="modal-body">
+    <div class="modal-cat">Navegación · Fortalezas</div>
+    <h2 class="modal-title">Tour Costero</h2>
+    <div class="modal-price-box"><span class="modal-price-amount">$37.000</span><span class="modal-price-per">CLP por persona</span></div>
+    <p class="modal-desc">Navega hacia la costa y explora fortalezas coloniales con siglos de historia y vistas espectaculares al Pacífico. Un viaje en el tiempo que combina paisaje, arquitectura y cultura local.</p>
+    <a href="https://wa.me/56900000000?text=Hola,%20quiero%20reservar%20el%20Tour%20Costero" target="_blank" class="modal-wa">💬 Quiero reservar este tour</a>
+  </div>
+</div>
+</div>
+
+<!-- M4 -->
+<div class="modal-overlay" id="m4" onclick="if(event.target===this)closeModal('m4')">
+<div class="modal">
+  <button class="modal-close" onclick="closeModal('m4')">✕</button>
+  <img class="modal-img" src="https://images.unsplash.com/photo-1600053161935-a68aa834a41b?w=800&q=80" alt="Trekking Naturaleza">
+  <div class="modal-body">
+    <div class="modal-cat">Naturaleza · Bosque</div>
+    <h2 class="modal-title">Trekking Naturaleza</h2>
+    <div class="modal-price-box"><span class="modal-price-amount">$34.900</span><span class="modal-price-per">CLP por persona</span></div>
+    <p class="modal-desc">Camina por senderos de bosque nativo, entre helechos milenarios y aves endémicas del sur de Chile. Un escape perfecto para quienes buscan silencio, naturaleza y vistas que no se olvidan.</p>
+    <a href="https://wa.me/56900000000?text=Hola,%20quiero%20reservar%20Trekking%20Naturaleza" target="_blank" class="modal-wa">💬 Quiero reservar este tour</a>
+  </div>
+</div>
+</div>
+
+<!-- M5 -->
+<div class="modal-overlay" id="m5" onclick="if(event.target===this)closeModal('m5')">
+<div class="modal">
+  <button class="modal-close" onclick="closeModal('m5')">✕</button>
+  <img class="modal-img" src="https://images.unsplash.com/photo-1594590167855-c039f199c1a5?w=800&q=80" alt="Tour de los Lagos">
+  <div class="modal-body">
+    <div class="modal-cat">Aventura · Lagos</div>
+    <h2 class="modal-title">Tour de los Lagos</h2>
+    <div class="modal-price-box"><span class="modal-price-amount">$74.900</span><span class="modal-price-per">CLP por persona</span></div>
+    <p class="modal-desc">Explora la majestuosidad de los lagos patagónicos rodeados de volcanes y bosques prístinos en un día completo. Una expedición que desafía los límites entre lo real y lo extraordinario.</p>
+    <a href="https://wa.me/56900000000?text=Hola,%20quiero%20reservar%20el%20Tour%20de%20los%20Lagos" target="_blank" class="modal-wa">💬 Quiero reservar este tour</a>
+  </div>
+</div>
+</div>
+
+<!-- M6 -->
+<div class="modal-overlay" id="m6" onclick="if(event.target===this)closeModal('m6')">
+<div class="modal">
+  <button class="modal-close" onclick="closeModal('m6')">✕</button>
+  <img class="modal-img" src="https://images.unsplash.com/photo-1697736767499-26eee0886dff?w=800&q=80" alt="Termas Naturales">
+  <div class="modal-body">
+    <div class="modal-cat">Termas · Relax</div>
+    <h2 class="modal-title">Termas Naturales</h2>
+    <div class="modal-price-box"><span class="modal-price-amount">$74.900</span><span class="modal-price-per">CLP por persona</span></div>
+    <p class="modal-desc">Sumérgete en aguas termales naturales en medio de una reserva boscosa, lejos del ruido y el estrés. Una experiencia de relajación total en uno de los entornos más bellos del sur.</p>
+    <a href="https://wa.me/56900000000?text=Hola,%20quiero%20reservar%20Termas%20Naturales" target="_blank" class="modal-wa">💬 Quiero reservar este tour</a>
+  </div>
+</div>
+</div>
+
+<!-- M7 -->
+<div class="modal-overlay" id="m7" onclick="if(event.target===this)closeModal('m7')">
+<div class="modal">
+  <button class="modal-close" onclick="closeModal('m7')">✕</button>
+  <img class="modal-img" src="https://images.unsplash.com/photo-1578762513065-f584c926cc04?w=800&q=80" alt="Reserva Natural">
+  <div class="modal-body">
+    <div class="modal-cat">Naturaleza · Reserva</div>
+    <h2 class="modal-title">Reserva Natural</h2>
+    <div class="modal-price-box"><span class="modal-price-amount">$64.900</span><span class="modal-price-per">CLP por persona</span></div>
+    <p class="modal-desc">Adéntrate en una reserva protegida con cascadas, fauna nativa y bosques que llevan miles de años intactos. Un destino de película para quienes buscan la naturaleza en estado puro.</p>
+    <a href="https://wa.me/56900000000?text=Hola,%20quiero%20reservar%20la%20Reserva%20Natural" target="_blank" class="modal-wa">💬 Quiero reservar este tour</a>
+  </div>
+</div>
+</div>
+
+<!-- M8 -->
+<div class="modal-overlay" id="m8" onclick="if(event.target===this)closeModal('m8')">
+<div class="modal">
+  <button class="modal-close" onclick="closeModal('m8')">✕</button>
+  <img class="modal-img" src="https://images.unsplash.com/photo-1594590203425-44de157988c3?w=800&q=80" alt="Termas Premium">
+  <div class="modal-body">
+    <div class="modal-cat">Termas · Exclusivo</div>
+    <h2 class="modal-title">Termas Premium</h2>
+    <div class="modal-price-box"><span class="modal-price-amount">$94.900</span><span class="modal-price-per">CLP por persona</span></div>
+    <p class="modal-desc">El complejo termal más espectacular de la región: múltiples piscinas en distintos niveles del bosque nativo, conectadas por pasarelas de madera sobre el agua. Una experiencia de lujo natural sin igual.</p>
+    <a href="https://wa.me/56900000000?text=Hola,%20quiero%20reservar%20Termas%20Premium" target="_blank" class="modal-wa">💬 Quiero reservar este tour</a>
+  </div>
+</div>
+</div>
+
+<!-- M9 -->
+<div class="modal-overlay" id="m9" onclick="if(event.target===this)closeModal('m9')">
+<div class="modal">
+  <button class="modal-close" onclick="closeModal('m9')">✕</button>
+  <img class="modal-img" src="https://images.unsplash.com/photo-1580154074075-b79ec0f80ef5?w=800&q=80" alt="Transfer Privado">
+  <div class="modal-body">
+    <div class="modal-cat">Traslado · Aeropuerto</div>
+    <h2 class="modal-title">Transfer Privado</h2>
+    <div class="modal-price-box"><span class="modal-price-amount">$20.000</span><span class="modal-price-per">CLP por persona</span></div>
+    <p class="modal-desc">Llega o parte con total comodidad: un vehículo privado te espera para llevarte directo a tu alojamiento sin esperas ni complicaciones. Puntual, cómodo y completamente profesional.</p>
+    <a href="https://wa.me/56900000000?text=Hola,%20quiero%20reservar%20el%20Transfer%20Privado" target="_blank" class="modal-wa">💬 Quiero reservar este tour</a>
+  </div>
+</div>
+</div>
+<script>
+// Navbar scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('sc', window.scrollY > 60), {passive:true});
+
+// Parallax hero
+const heroBg = document.getElementById('heroBg');
+window.addEventListener('scroll', () => {
+  if(window.scrollY < window.innerHeight)
+    heroBg.style.transform = `scale(1.1) translateY(${window.scrollY * 0.28}px)`;
+}, {passive:true});
+
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }});
+}, {threshold:.1, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Rating bars
+const rObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.bar-fill').forEach((b,i) => {
+        setTimeout(() => b.style.width = b.dataset.w, 300 + i*80);
+      });
+      rObs.unobserve(e.target);
+    }
+  });
+}, {threshold:.3});
+const rb = document.getElementById('ratingBox');
+if(rb) rObs.observe(rb);
+
+// Mobile menu
+const ham = document.getElementById('ham');
+const mob = document.getElementById('mob');
+const mc  = document.getElementById('mobClose');
+ham.addEventListener('click', () => { mob.classList.add('open'); document.body.style.overflow='hidden'; });
+mc.addEventListener('click', closeMob);
+function closeMob(){ mob.classList.remove('open'); document.body.style.overflow=''; }
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
+  });
+});
+
+// Modal open/close
+function openModal(id){
+  const el = document.getElementById(id);
+  el.classList.add('open');
+  el.querySelector('.modal').scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id){
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape'){
+    document.querySelectorAll('.modal-overlay.open').forEach(m => closeModal(m.id));
+  }
+});
+</script>
+</body>
+</html>
